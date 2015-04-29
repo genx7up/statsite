@@ -52,7 +52,7 @@ exit 0
 
 %preun
 if [ "$1" = 0 ] ; then
-	%if %{monit_bin}
+	%if 0%{?monit_bin}
 	%{monit_bin} stop %{name}
 	%endif
 	/sbin/service %{name} stop > /dev/null 2>&1
@@ -78,6 +78,8 @@ exit 0
 %attr(755, root, root) /usr/libexec/statsite/sinks/gmetric.py
 %attr(755, root, root) /usr/libexec/statsite/sinks/influxdb.py
 %attr(755, root, root) /usr/libexec/statsite/sinks/graphite.py
+%attr(755, root, root) /usr/libexec/statsite/sinks/cloudwatch.sh
+%attr(755, root, root) /usr/libexec/statsite/sinks/opentsdb.js
 
 %changelog
 * Fri Jul 18 2014 Gary Richardson <gary.richardson@gmail.com>
